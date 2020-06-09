@@ -27,4 +27,4 @@ jobs:
         
     - name: echo
       run: |
-        echo "github.sha=${{ github.sha }}"
+        echo "commit_sha=$(git rev-parse HEAD)"
