@@ -16,6 +16,7 @@ jobs:
     - name: Set Ref
       id: ref
       run: |
+        echo ${{ github.event.client_payload.commit_sha }}
         echo ::set-output name=ref::${{ ( github.event.client_payload.commit_sha != '' && github.event.client_payload.commit_sha ) || 'master' }}
 
     - name: Checkout Repository
@@ -26,4 +27,4 @@ jobs:
         
     - name: echo
       run: |
-        echo "now=${{ github.sha }}"
+        echo "github.sha=${{ github.sha }}"
