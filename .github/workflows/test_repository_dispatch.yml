@@ -1,0 +1,18 @@
+name: TestRepositoryDispatch
+
+on:
+  repository_dispatch:
+    types: test_repository_dispatch
+
+jobs:
+  test_repository_dispatch:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+    - name: Set Current time
+      id: now
+      run: |
+        NOW=$(date +"%Y%m%d%H%M%S")
+        echo ::set-output name=now::${NOW}
+        echo "NOW=${NOW}"
