@@ -6,13 +6,22 @@ on:
 
 jobs:
   test_repository_dispatch:
+    
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Tokyo
+
     steps:
     - name: Set Current time
-      id: now
+      id: var
       run: |
         NOW=$(date +"%Y%m%d%H%M%S")
         echo ::set-output name=now::${NOW}
-        echo "NOW=${NOW}"
+        echo "now=${{ steps.var.outputs.now }}"
+        echo ::set-output name=test::{{ github.event.client_payload.test != '' && github.event.client_payload.test || 'undefined' }}
+        echo "test=${{ steps.var.outputs.test }}"
+  
+    - name: echo
+      run: |
+        echo "now=${{ steps.var.outputs.now }}"
+        echo "test=${{ steps.var.outputs.test }}"
