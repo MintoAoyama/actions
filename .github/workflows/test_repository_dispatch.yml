@@ -10,30 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Tokyo
-      ENV_TEST: sakohidahsihadgoihaso
 
     steps:
-
-    - name: echo1
-      run: |
-        echo "ENV_TEST=${ENV_TEST}"
           
-    - name: Set Current time
+    - name: Set Variable
       id: var
       run: |
         NOW=$(date +"%Y%m%d%H%M%S")
         echo ::set-output name=now::${NOW}
-        echo "now=${{ steps.var.outputs.now }}"
-        echo ::set-output name=test::${{ ( github.event.client_payload.test != '' && github.event.client_payload.test ) || 'undefined' }}
-        echo "test=${{ steps.var.outputs.test }}"
-        ENV_TEST="test"
-  
-    - name: echo2
-      run: |
-        echo "now=${{ steps.var.outputs.now }}"
-        echo "test=${{ steps.var.outputs.test }}"
-        echo "test=${{ steps.var.outputs.test }}"
         
-    - name: echo1
+    - name: echo
       run: |
-        echo "ENV_TEST=${ENV_TEST}"
+        echo "now=${{ steps.var.outputs.now }}"
+        
+    - name: if
+      if: github.event.client_payload.test == ''
+      run: |
+        echo "undefined"
