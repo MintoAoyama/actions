@@ -18,7 +18,7 @@ jobs:
         NOW=$(date +"%Y%m%d%H%M%S")
         echo ::set-output name=now::${NOW}
         echo "now=${{ steps.var.outputs.now }}"
-        echo ::set-output name=test::{{ github.event.client_payload.test != '' && github.event.client_payload.test || 'undefined' }}
+        echo ::set-output name=test::${{ ( github.event.client_payload.test != '' && github.event.client_payload.test ) || 'undefined' }}
         echo "test=${{ steps.var.outputs.test }}"
   
     - name: echo
