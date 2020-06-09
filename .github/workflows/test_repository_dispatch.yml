@@ -12,18 +12,18 @@ jobs:
       TZ: Asia/Tokyo
 
     steps:
-          
-    - name: Set Variable
-      id: var
+  
+    - name: Set Ref
+      id: ref
       run: |
-        NOW=$(date +"%Y%m%d%H%M%S")
-        echo ::set-output name=now::${NOW}
+        echo ::set-output name=ref::${{ ( github.event.client_payload.commit_sha != '' && github.event.client_payload.commit_sha ) || 'master' }}
+
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ steps.ref.outputs.ref }}
+        fetch-depth: 1
         
     - name: echo
       run: |
-        echo "now=${{ steps.var.outputs.now }}"
-        
-    - name: if
-      if: github.event.client_payload.test == ''
-      run: |
-        echo "undefined"
+        echo "now=${{ github.sha }}"
