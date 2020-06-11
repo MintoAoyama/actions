@@ -1,0 +1,16 @@
+name: TestRepositoryDispatch
+
+on: [push]
+
+jobs:
+  push:
+    
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+
+    steps:
+        
+    - name: echo
+      run: |
+        echo "test"
