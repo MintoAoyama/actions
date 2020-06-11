@@ -1,4 +1,4 @@
-name: TestRepositoryDispatch
+name: Push
 
 on: [push]
 
