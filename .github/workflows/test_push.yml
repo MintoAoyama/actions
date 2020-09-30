@@ -19,8 +19,17 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
       with:
-        fetch-depth: 1        
+        fetch-depth: 1
         
-    - name: echo
+    - name: ls -all
+      run: |
+        ls -all
+
+    - name: touch
+      run: |
+        mkdir -p ./test2
+        echo "test2" ./test2/test.txt
+        
+    - name: ls -all
       run: |
         ls -all
