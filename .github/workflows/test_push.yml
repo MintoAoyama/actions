@@ -21,15 +21,11 @@ jobs:
       with:
         fetch-depth: 1
         
-    - name: ls -all
+    - name: echo
       run: |
         ls -all
-
-    - name: touch
-      run: |
         mkdir -p ./test2
-        echo "test2" ./test2/test.txt
-        
-    - name: ls -all
-      run: |
+        echo "test2" >> ./test2/test.txt
+        ls -all
+        chown -R root:root test2
         ls -all
