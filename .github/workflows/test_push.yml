@@ -27,5 +27,5 @@ jobs:
         mkdir -p ./test2
         echo "test2" >> ./test2/test.txt
         ls -all
-        chown -R root:root test2
+        sudo chown -R root:root test2
         ls -all
